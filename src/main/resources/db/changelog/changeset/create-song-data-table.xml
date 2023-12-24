@@ -8,6 +8,12 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="artist" type="VARCHAR(100)"/>
+            <column name="album" type="VARCHAR(100)"/>
+            <column name="length" type="VARCHAR(100)"/>
+            <column name="resourceId" type="INT"/>
+            <column name="year" type="VARCHAR(100)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

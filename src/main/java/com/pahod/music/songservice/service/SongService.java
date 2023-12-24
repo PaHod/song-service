@@ -1,9 +1,9 @@
-package com.pahod.music.resourceservice.service;
+package com.pahod.music.songservice.service;
 
-import com.pahod.music.resourceservice.entity.SongEntity;
-import com.pahod.music.resourceservice.exception.FileParsingException;
-import com.pahod.music.resourceservice.exception.SongNotFoundException;
-import com.pahod.music.resourceservice.repository.SongRepository;
+import com.pahod.music.songservice.entity.SongEntity;
+import com.pahod.music.songservice.exception.FileParsingException;
+import com.pahod.music.songservice.exception.SongNotFoundException;
+import com.pahod.music.songservice.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.exception.TikaException;
@@ -47,13 +47,13 @@ public class SongService {
         return metadata;
     }
 
-    public SongEntity getResource(int id) {
+    public SongEntity getSong(int id) {
         return songRepository
                 .findById(id)
-                .orElseThrow(() -> new SongNotFoundException("Couldn't find resource for Id: " + id));
+                .orElseThrow(() -> new SongNotFoundException("Couldn't find song for Id: " + id));
     }
 
-    public List<Integer> deleteResources(List<Integer> idsToDelete) {
+    public List<Integer> deleteSongs(List<Integer> idsToDelete) {
         log.debug("IDs to be removed: {}", idsToDelete);
         return idsToDelete.stream()
                 .filter(songRepository::existsById)
