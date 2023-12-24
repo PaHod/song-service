@@ -4,7 +4,7 @@ import com.pahod.music.songservice.entity.SongEntity;
 import com.pahod.music.songservice.service.SongService;
 import com.pahod.music.songservice.web.dto.DeletedSongsIDs;
 import com.pahod.music.songservice.web.dto.MetadataDTO;
-import com.pahod.music.songservice.web.dto.SongDTO;
+import com.pahod.music.songservice.web.dto.SongResponseDTO;
 import com.pahod.music.songservice.web.mapper.SongMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,21 +33,13 @@ public class SongController {
     private final SongMapper songMapper;
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<?> uploadAudioResource(@RequestBody MetadataDTO metadataDTO) {
-        System.out.println(metadataDTO);
-
-//    String validationResult = validateAudioFile(file);
-//    if (!validationResult.isEmpty()) {
-//      return ResponseEntity.badRequest().body(validationResult);
-//    }
-//
-//    SongEntity song = songService.uploadAudioResource(file);
-//    SongResponse songResponse = songMapper.modelToResponse(song);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> createSongData(@RequestBody MetadataDTO metadataDTO) {
+        SongEntity savedSong = songService.createSongData(songMapper.metadataToModel(metadataDTO));
+        return ResponseEntity.ok(songMapper.modelToSongIdDTO(savedSong));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SongDTO> getSong(@PathVariable("id") int id) {
+    public ResponseEntity<SongResponseDTO> getSong(@PathVariable("id") int id) {
         log.debug("Get song ID: {}", id);
         SongEntity song = songService.getSong(id);
         return ResponseEntity.ok(songMapper.modelToDTO(song));

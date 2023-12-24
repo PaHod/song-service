@@ -12,7 +12,7 @@
             <column name="artist" type="VARCHAR(100)"/>
             <column name="album" type="VARCHAR(100)"/>
             <column name="length" type="VARCHAR(100)"/>
-            <column name="resourceId" type="INT"/>
+            <column name="resource_id" type="INT"/>
             <column name="year" type="VARCHAR(100)"/>
         </createTable>
     </changeSet>
