@@ -32,6 +32,10 @@ public class SongController {
     private final SongService songService;
     private final SongMapper songMapper;
 
+    @GetMapping("/ping")
+    public ResponseEntity<?> pingPong() {
+        return ResponseEntity.ok("song pong");
+    }
     @PostMapping(consumes = "application/json")
     public ResponseEntity<?> createSongData(@RequestBody MetadataDTO metadataDTO) {
         SongEntity savedSong = songService.createSongData(songMapper.metadataToModel(metadataDTO));
