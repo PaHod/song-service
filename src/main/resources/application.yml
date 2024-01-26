@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:postgresql://localhost:5432/music_resource
+    #    url: jdbc:postgresql://localhost:5432/music_resource
     url: jdbc:postgresql://${DB_SERVICE_HOST}:${DB_SERVICE_PORT}/${DB_NAME}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
@@ -17,4 +17,13 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  application:
+    name: song-service-client
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_HOST}/eureka/
+
+
+management.endpoints.web.exposure.include: '*'
 
