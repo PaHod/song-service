@@ -23,7 +23,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URI:http://localhost:8766/eureka}
+      defaultZone: ${EUREKA_REGISTRY_URI:http://localhost:8766/eureka}
 
 
 management.endpoints.web.exposure.include: '*'
